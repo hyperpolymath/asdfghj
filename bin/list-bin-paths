@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# List bin paths for ghjk installation
+# This is called by asdf to determine which directories contain executables
+
+# The install_path is passed as the first argument
+install_path="${1:-}"
+
+if [[ -z "$install_path" ]]; then
+  echo "Error: install_path required" >&2
+  exit 1
+fi
+
+# ghjk binaries can be in multiple locations depending on version
+# Check for bin/ directory first (standard location)
+if [[ -d "${install_path}/bin" ]]; then
+  echo "${install_path}/bin"
+fi
+
+# Some versions might have the binary in the root
+# We handle this with a symlink in the install script,
+# but list both for compatibility
+if [[ -f "${install_path}/ghjk" ]] && [[ ! -d "${install_path}/bin" ]]; then
+  echo "${install_path}"
+fi

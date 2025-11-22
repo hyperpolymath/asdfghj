@@ -1,0 +1,230 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck on bin scripts
+        run: |
+          shellcheck bin/*
+
+      - name: Run ShellCheck on lib scripts
+        run: |
+          shellcheck lib/*.sh
+
+      - name: Check script permissions
+        run: |
+          for script in bin/*; do
+            if [ ! -x "$script" ]; then
+              echo "Error: $script is not executable"
+              exit 1
+            fi
+          done
+
+  test:
+    name: Test (asdf ${{ matrix.asdf-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        asdf-version:
+          - v0.14.0
+          - latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl git tar zstd unzip
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install curl git tar zstd unzip || true
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v3
+        with:
+          asdf_branch: ${{ matrix.asdf-version }}
+
+      - name: Install BATS
+        run: |
+          git clone --depth 1 https://github.com/bats-core/bats-core.git test/bats
+          git clone --depth 1 https://github.com/bats-core/bats-support.git test/bats-support
+          git clone --depth 1 https://github.com/bats-core/bats-assert.git test/bats-assert
+
+      - name: Run unit tests
+        run: |
+          ./test/bats/bin/bats test/utils.bats
+          ./test/bats/bin/bats test/list-all.bats
+
+      - name: Add plugin to asdf
+        run: |
+          asdf plugin add ghjk "${GITHUB_WORKSPACE}"
+
+      - name: Test list-all via asdf
+        run: |
+          asdf list all ghjk
+
+      - name: Test install latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          latest_version=$(asdf list all ghjk | tr ' ' '\n' | tail -1)
+          echo "Installing ghjk ${latest_version}"
+          asdf install ghjk "${latest_version}"
+          asdf global ghjk "${latest_version}"
+
+      - name: Verify ghjk installation
+        run: |
+          ghjk --version
+          which ghjk
+
+      - name: Test ghjk basic functionality
+        run: |
+          # Create a test directory
+          mkdir -p /tmp/ghjk-test
+          cd /tmp/ghjk-test
+
+          # Initialize ghjk project
+          ghjk init ts
+
+          # Check that config file was created
+          [ -f "ghjk.ts" ]
+
+      - name: Test installing specific version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Install a specific older version
+          asdf install ghjk 0.3.2
+          asdf local ghjk 0.3.2
+
+          # Verify version
+          ghjk --version | grep -i "0.3"
+
+  integration-test:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl git tar zstd unzip
+
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v3
+
+      - name: Add plugin
+        run: |
+          asdf plugin add ghjk "${GITHUB_WORKSPACE}"
+
+      - name: Test multiple versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get latest 3 versions
+          versions=$(asdf list all ghjk | tr ' ' '\n' | tail -3)
+
+          for version in $versions; do
+            echo "Testing version: $version"
+            asdf install ghjk "$version"
+
+            # Quick validation
+            asdf shell ghjk "$version" -- ghjk --version
+          done
+
+      - name: Test version switching
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Install two versions
+          asdf install ghjk 0.3.2
+          latest=$(asdf list all ghjk | tr ' ' '\n' | tail -1)
+          asdf install ghjk "$latest"
+
+          # Switch between them
+          asdf global ghjk 0.3.2
+          ghjk --version | grep -i "0.3"
+
+          asdf global ghjk "$latest"
+          ghjk --version
+
+  compatibility-test:
+    name: Compatibility Test (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-20.04
+            platform: linux-x86_64
+          - os: ubuntu-22.04
+            platform: linux-x86_64-latest
+          - os: macos-12
+            platform: macos-x86_64
+          - os: macos-14
+            platform: macos-arm64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test platform detection
+        run: |
+          source lib/utils.sh
+          platform=$(get_platform)
+          echo "Detected platform: $platform"
+
+          # Verify it's one of the supported platforms
+          case "$platform" in
+            x86_64-unknown-linux-gnu|aarch64-unknown-linux-gnu|x86_64-apple-darwin|aarch64-apple-darwin)
+              echo "Platform is supported"
+              ;;
+            *)
+              echo "Error: Unsupported platform: $platform"
+              exit 1
+              ;;
+          esac
+
+      - name: Test download URL generation
+        run: |
+          source lib/utils.sh
+          platform=$(get_platform)
+          url=$(get_download_url "0.3.2" "$platform")
+          echo "Download URL: $url"
+
+          # Verify URL format
+          [[ "$url" =~ ^https://github.com/metatypedev/ghjk/releases/download/v[0-9]+\.[0-9]+\.[0-9]+/ghjk-v[0-9]+\.[0-9]+\.[0-9]+-.+\.tar\.gz$ ]]

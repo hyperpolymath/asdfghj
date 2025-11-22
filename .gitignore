@@ -1,0 +1,44 @@
+# asdf plugin gitignore
+
+# Test artifacts
+test/bats/
+test/bats-support/
+test/bats-assert/
+test/temp/
+*.log
+
+# Downloaded files
+downloads/
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# asdf local configuration
+.tool-versions
+
+# Build artifacts
+dist/
+build/
+
+# Coverage reports
+coverage/
+*.coverage
+
+# Environment files
+.env
+.env.local
+.envrc
+
+# Metadata
+.metadata

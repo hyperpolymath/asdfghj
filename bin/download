@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Get the plugin directory
+PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# Source utility functions
+# shellcheck source=../lib/utils.sh
+source "${PLUGIN_DIR}/lib/utils.sh"
+
+# Download ghjk binary for the specified version
+download_version() {
+  local version="$1"
+  local download_path="$2"
+  local platform
+  local download_url
+  local asset_name
+  local archive_path
+  local checksum=""
+
+  # Remove 'v' prefix if present for consistency
+  local clean_version="${version#v}"
+
+  log "Downloading ghjk ${clean_version}..."
+
+  # Detect platform
+  platform="$(get_platform)"
+  log "Detected platform: ${platform}"
+
+  # Get download URL
+  download_url="$(get_download_url "$clean_version" "$platform")"
+  asset_name="$(get_asset_name "$clean_version" "$platform")"
+  archive_path="${download_path}/${asset_name}"
+
+  log "Download URL: ${download_url}"
+
+  # Create download directory
+  mkdir -p "$download_path"
+
+  # Fetch release info to get checksum
+  local release_json
+  local tag_name="v${clean_version}"
+
+  if release_json="$(github_api_fetch "${GITHUB_API_URL}/releases/tags/${tag_name}")"; then
+    # Try to extract SHA256 from release assets
+    checksum="$(echo "$release_json" | grep -A 20 "\"name\": *\"${asset_name}\"" | grep -o '"digest"[^}]*' | grep -o '"sha256": *"[^"]*"' | sed 's/"sha256": *"\([^"]*\)"/\1/' | head -1 || true)"
+
+    if [[ -n "$checksum" ]]; then
+      log "Found checksum: ${checksum}"
+    else
+      warn "No checksum found in release metadata"
+    fi
+  else
+    warn "Could not fetch release information for checksum verification"
+  fi
+
+  # Download the archive
+  if ! download_file "$download_url" "$archive_path"; then
+    error "Failed to download ghjk ${clean_version}"
+    cleanup "$archive_path"
+    exit 1
+  fi
+
+  success "Downloaded: ${asset_name}"
+
+  # Verify checksum if available
+  if [[ -n "$checksum" ]]; then
+    if ! verify_checksum "$archive_path" "$checksum"; then
+      error "Checksum verification failed"
+      cleanup "$archive_path"
+      exit 1
+    fi
+  fi
+
+  # Store metadata for install script
+  cat > "${download_path}/.metadata" << EOF
+version=${clean_version}
+platform=${platform}
+archive=${asset_name}
+checksum=${checksum}
+EOF
+
+  success "Download complete"
+}
+
+# Main execution
+main() {
+  local version="${ASDF_INSTALL_VERSION:-}"
+  local download_path="${ASDF_DOWNLOAD_PATH:-}"
+
+  if [[ -z "$version" ]]; then
+    error "ASDF_INSTALL_VERSION environment variable is required"
+    exit 1
+  fi
+
+  if [[ -z "$download_path" ]]; then
+    error "ASDF_DOWNLOAD_PATH environment variable is required"
+    exit 1
+  fi
+
+  check_dependencies
+  download_version "$version" "$download_path"
+}
+
+main "$@"
