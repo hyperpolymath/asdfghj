@@ -1,0 +1,7 @@
+;; asdf-ghjk - Guix Channel
+;; Add to ~/.config/guix/channels.scm
+
+(channel
+ (version 0)
+ (url "https://github.com/hyperpolymath/asdf-ghjk")
+ (branch "main"))
