@@ -1,0 +1,36 @@
+= asdfghj - Citation Guide
+:toc:
+
+== BibTeX
+
+[source,bibtex]
+----
+@software{asdfghj_2025,
+  author = {Polymath, Hyper},
+  title = {asdfghj},
+  year = {2025},
+  url = {https://github.com/hyperpolymath/asdfghj},
+  license = {AGPL-3.0-or-later}
+}
+----
+
+== Harvard Style
+
+Polymath, H. (2025) _asdfghj_ [Computer software]. Available at: https://github.com/hyperpolymath/asdfghj
+
+== OSCOLA
+
+Hyper Polymath, 'asdfghj' (2025) <https://github.com/hyperpolymath/asdfghj>
+
+== MLA
+
+Polymath, Hyper. "asdfghj." 2025, github.com/hyperpolymath/asdfghj.
+
+== APA 7
+
+Polymath, H. (2025). _asdfghj_ [Computer software]. GitHub. https://github.com/hyperpolymath/asdfghj
+
+== See Also
+
+* link:../CITATION.cff[CITATION.cff]
+* link:../codemeta.json[codemeta.json]
