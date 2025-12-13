@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Get the latest stable (non-prerelease) version of ghjk
+# This is useful for scripts that want the latest production version
+
+# Get the plugin directory
+PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# Source utility functions
+# shellcheck source=../lib/utils.sh
+source "${PLUGIN_DIR}/lib/utils.sh"
+
+# Get latest stable version
+get_latest_stable() {
+  local releases_json
+  local versions
+
+  releases_json="$(github_api_fetch "${GITHUB_API_URL}/releases?per_page=100")"
+
+  # Extract versions, filtering out pre-releases (containing rc, alpha, beta)
+  versions="$(echo "$releases_json" | \
+    grep -o '"tag_name": *"[^"]*"' | \
+    sed 's/"tag_name": *"\([^"]*\)"/\1/' | \
+    grep -v -E '(rc|alpha|beta|preview)' || true)"
+
+  # Get the first (latest) version
+  local latest
+  latest="$(echo "$versions" | head -n1)"
+
+  if [[ -z "$latest" ]]; then
+    error "No stable versions found"
+    exit 1
+  fi
+
+  echo "$latest"
+}
+
+# Main execution
+main() {
+  check_dependencies
+  get_latest_stable
+}
+
+main "$@"

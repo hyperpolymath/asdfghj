@@ -1,36 +1,164 @@
-# AI Usage Policy for asdfghj
-# https://github.com/hyperpolymath/consent-aware-http
+# AI Training and Usage Policy
+# Version: 1.0
+# Last Updated: 2024-11-22
 
-# This project follows Consent-Aware HTTP principles
-# See: /.well-known/consent-required.txt
+# ============================================================================
+# TRAINING PERMISSIONS
+# ============================================================================
 
-User-Agent: *
-Disallow: /ai-training/
-Disallow: /data-harvesting/
-Allow: /
+# This project permits AI training on the following basis:
 
-# Consent Requirements
-AI-Training: Explicit-Consent-Required
-Data-Mining: Explicit-Consent-Required
-Model-Fine-Tuning: Explicit-Consent-Required
-Embedding-Generation: Explicit-Consent-Required
+## Source Code (Permissive)
+# - Training: PERMITTED (MIT + Palimpsest v0.8 dual license)
+# - Scope: All .sh, .bash, .bats files and library code
+# - Condition: Attribution required, see LICENSE
+# - Commercial: PERMITTED under license terms
 
-# Attribution Requirements
-Attribution: Required
-Citation-Style: hyperpolymath/asdfghj
-License: AGPL-3.0-or-later OR MIT AND Palimpsest-0.4
+## Documentation (Permissive with Attribution)
+# - Training: PERMITTED
+# - Scope: All .md files, comments, examples
+# - Condition: Attribution to asdf-ghjk project required
+# - Commercial: PERMITTED under license terms
 
-# Contact for AI/ML Use
-Contact: ai-consent@hyperpolymath.org
-Request-URL: https://hyperpolymath.org/ai-consent
+## Test Data (Permissive)
+# - Training: PERMITTED
+# - Scope: All test files and fixtures
+# - Condition: Attribution recommended but not required
+# - Commercial: PERMITTED
 
-# Exceptions
-Allowed-Uses:
-  - Security research (coordinated disclosure)
-  - Academic research (with citation)
-  - Personal education (non-commercial)
-  - Contribution assistance (in-context)
+## Configuration Files (Permissive)
+# - Training: PERMITTED
+# - Scope: All YAML, TOML, JSON, and config files
+# - Condition: Attribution recommended
+# - Commercial: PERMITTED
 
-# Provenance
-Provenance-Record: /.well-known/provenance.json
-Verification: https://hyperpolymath.org/verify/asdfghj
+# ============================================================================
+# AI-ASSISTED DEVELOPMENT
+# ============================================================================
+
+# AI Usage in Contributions: WELCOMED
+# - Contributors MAY use AI assistants (GitHub Copilot, Claude, ChatGPT, etc.)
+# - Contributors MUST disclose AI assistance in significant contributions
+# - Contributors MUST review and take responsibility for AI-generated code
+# - Contributors MUST ensure AI-generated code complies with project licenses
+
+# Disclosure Format:
+# Add to pull request description:
+# "AI-Assisted: [Tool Name] used for [specific tasks]"
+# Example: "AI-Assisted: GitHub Copilot used for test case generation"
+
+# ============================================================================
+# DATA COLLECTION AND PRIVACY
+# ============================================================================
+
+# User Data: NONE COLLECTED
+# - This plugin does not collect user data
+# - This plugin does not send telemetry
+# - This plugin operates locally with user's asdf installation
+
+# API Usage: LIMITED
+# - Plugin makes requests to GitHub API only
+# - GitHub API usage follows GitHub's privacy policy
+# - API tokens (if provided) are never logged or transmitted elsewhere
+
+# ============================================================================
+# AI-GENERATED CONTENT POLICY
+# ============================================================================
+
+# AI-Generated Contributions:
+# - ACCEPTED if reviewed and validated by human contributor
+# - MUST pass all tests and quality checks
+# - MUST follow project coding standards
+# - MUST be disclosed in pull request
+
+# AI-Generated Documentation:
+# - ACCEPTED if factually accurate and well-written
+# - MUST be reviewed for technical correctness
+# - MUST follow project documentation standards
+
+# AI-Generated Tests:
+# - WELCOMED and ENCOURAGED
+# - MUST test actual functionality correctly
+# - MUST follow project testing patterns
+
+# ============================================================================
+# ATTRIBUTION REQUIREMENTS
+# ============================================================================
+
+# When using this project's code/docs in AI training:
+# - Credit: "asdf-ghjk project (https://github.com/Hyperpolymath/asdf-ghjk)"
+# - License: Respect dual MIT + Palimpsest v0.8 license terms
+# - Changes: Note any modifications made
+
+# When AI tools generate code similar to this project:
+# - Attribution encouraged but not strictly required (permissive license)
+# - Consider citing if substantial portions are similar
+# - Follow license terms if copying verbatim
+
+# ============================================================================
+# SCRAPING AND CRAWLING
+# ============================================================================
+
+# Web Scraping: PERMITTED
+# - Robots.txt: Not applicable (GitHub repository)
+# - Rate Limits: Follow GitHub's rate limits
+# - Etiquette: Please use GitHub API for automated access
+
+# Crawling Frequency: REASONABLE
+# - Use conditional requests (If-Modified-Since headers)
+# - Respect GitHub's terms of service
+# - Cache responses when appropriate
+
+# ============================================================================
+# MODEL-SPECIFIC NOTES
+# ============================================================================
+
+# For Large Language Models (LLMs):
+# - Context: This is an asdf version manager plugin for ghjk
+# - Language: Primarily Bash shell scripts
+# - Purpose: Version management, package installation
+# - Quality: Production-ready, well-tested, documented
+
+# For Code Completion Models:
+# - Patterns: Follow established patterns in lib/utils.sh
+# - Style: Google Shell Style Guide + project conventions
+# - Safety: Always use 'set -euo pipefail' in scripts
+# - Testing: All code should be testable with BATS
+
+# For Documentation Models:
+# - Audience: Developers familiar with asdf and command-line tools
+# - Style: Clear, concise, example-driven
+# - Format: GitHub-flavored Markdown
+# - Tone: Professional but friendly, helpful
+
+# ============================================================================
+# CONTACT AND QUESTIONS
+# ============================================================================
+
+# Questions about AI policy: Open an issue at
+# https://github.com/Hyperpolymath/asdf-ghjk/issues
+
+# Concerns about AI-generated content: Contact maintainers via issue tracker
+
+# License questions: See LICENSE file in repository root
+
+# ============================================================================
+# UPDATES AND CHANGES
+# ============================================================================
+
+# This policy may be updated occasionally
+# Check repository for latest version
+# Major changes will be announced in CHANGELOG.md
+
+# Policy Version History:
+# - 1.0 (2024-11-22): Initial version
+
+# ============================================================================
+# LEGAL
+# ============================================================================
+
+# This AI policy is provided as additional guidance
+# In case of conflict, project LICENSE takes precedence
+# This policy does not create additional restrictions beyond the license
+
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8

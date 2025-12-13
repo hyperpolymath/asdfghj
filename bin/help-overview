@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# Display help overview for the ghjk plugin
+
+cat << 'EOF'
+asdf-ghjk - asdf plugin for ghjk (development environment manager)
+
+ABOUT GHJK:
+  ghjk is a modern development environment manager that provides:
+  - Unified package management across npm, PyPI, crates.io, and more
+  - TypeScript-based task automation powered by Deno
+  - Reproducible POSIX environments for development, CI/CD, and containers
+
+INSTALLATION:
+  asdf plugin add ghjk https://github.com/Hyperpolymath/asdf-ghjk.git
+  asdf install ghjk latest
+  asdf global ghjk latest
+
+USAGE:
+  asdf list all ghjk              # List all available versions
+  asdf install ghjk <version>     # Install a specific version
+  asdf install ghjk latest        # Install the latest version
+  asdf global ghjk <version>      # Set global version
+  asdf local ghjk <version>       # Set local version
+  asdf current ghjk               # Show current version
+  asdf uninstall ghjk <version>   # Uninstall a version
+
+EXAMPLES:
+  # Install and use latest ghjk
+  asdf install ghjk latest
+  asdf global ghjk latest
+  ghjk --version
+
+  # Initialize a project with ghjk
+  mkdir my-project && cd my-project
+  ghjk init ts
+
+  # Use ghjk to manage your development environment
+  ghjk env              # Activate environment
+  ghjk run <task>       # Run defined tasks
+
+ENVIRONMENT VARIABLES:
+  GITHUB_API_TOKEN      Set to avoid GitHub API rate limits
+
+SUPPORTED PLATFORMS:
+  - Linux (x86_64, aarch64)
+  - macOS (x86_64, arm64/M1+)
+
+DOCUMENTATION:
+  Plugin:  https://github.com/Hyperpolymath/asdf-ghjk
+  ghjk:    https://github.com/metatypedev/ghjk
+  asdf:    https://asdf-vm.com
+
+TROUBLESHOOTING:
+  - Check GitHub API rate limits if list/install fails
+  - Ensure required dependencies are installed: git, curl, tar, unzip, zstd
+  - Run with ASDF_DEBUG=1 for verbose output
+
+SUPPORT:
+  Issues:  https://github.com/Hyperpolymath/asdf-ghjk/issues
+  Docs:    https://github.com/Hyperpolymath/asdf-ghjk/blob/main/README.md
+EOF

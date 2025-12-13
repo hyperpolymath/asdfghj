@@ -1,9 +1,9 @@
-# CITATION.cff - Citation File Format for asdfghj
+# CITATION.cff - Citation File Format for asdf-ghjk
 # https://citation-file-format.github.io/
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5
 
 cff-version: 1.2.0
-title: "asdfghj"
+title: "asdf-ghjk"
 message: "If you use this software, please cite it as below."
 type: software
 authors:
@@ -11,13 +11,13 @@ authors:
     given-names: "Hyper"
     email: "hyperpolymath@proton.me"
     affiliation: "Rhodium Standard / Independent Researcher"
-repository-code: "https://github.com/hyperpolymath/asdfghj"
-url: "https://rhodium.sh/projects/asdfghj"
-abstract: "RSR-compliant project"
+repository-code: "https://github.com/hyperpolymath/asdf-ghjk"
+url: "https://rhodium.sh/projects/asdf-ghjk"
+abstract: "The asdf-ghjk plugin is feature-complete with all core"
 keywords:
   - RSR
   - rhodium-standard
 license: "AGPL-3.0-or-later"
-license-url: "https://github.com/hyperpolymath/asdfghj/blob/main/LICENSE.txt"
+license-url: "https://github.com/hyperpolymath/asdf-ghjk/blob/main/LICENSE.txt"
 version: "0.1.0"
 date-released: "2025-12-10"

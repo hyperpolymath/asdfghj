@@ -1,15 +1,27 @@
-# Security Policy for asdfghj
-# https://securitytxt.org/
+# Canonical: https://github.com/Hyperpolymath/asdf-ghjk/.well-known/security.txt
+# RFC 9116 - https://www.rfc-editor.org/rfc/rfc9116.html
 
-Contact: security@hyperpolymath.org
-Expires: {{EXPIRY_DATE}}
-Encryption: https://hyperpolymath.org/gpg/security.asc
-Preferred-Languages: en, nl
-Canonical: https://github.com/hyperpolymath/asdfghj/.well-known/security.txt
-Policy: https://github.com/hyperpolymath/asdfghj/blob/main/SECURITY.md
+Contact: https://github.com/Hyperpolymath/asdf-ghjk/security/advisories/new
+Contact: https://github.com/Hyperpolymath/asdf-ghjk/issues
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://github.com/Hyperpolymath/asdf-ghjk/.well-known/security.txt
+
+# Policy
+Policy: https://github.com/Hyperpolymath/asdf-ghjk/blob/main/SECURITY.md
 
 # Acknowledgments
-Acknowledgments: https://hyperpolymath.org/security/acknowledgments
+Acknowledgments: https://github.com/Hyperpolymath/asdf-ghjk/security/advisories
+
+# Encryption
+# We accept unencrypted reports via GitHub Security Advisories
+# For encrypted communication, use GitHub's built-in encryption
 
 # Hiring
-Hiring: https://hyperpolymath.org/careers
+# We are a community open-source project and do not have a security team
+
+# Additional Information
+# Please review SECURITY.md for our security policy and vulnerability disclosure process
+# We follow responsible disclosure and will acknowledge security researchers
+# Typical response time: 48 hours for initial acknowledgment
+# Typical fix time: 7-14 days for critical issues, 30 days for non-critical

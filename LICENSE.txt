@@ -1,15 +1,10 @@
-SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5
+Dual License: MIT AND Palimpsest-0.8
 
-This software is dual-licensed under:
-  1. GNU Affero General Public License v3.0 or later
-  2. Palimpsest License v0.5
-
-See https://spdx.org/licenses/ for license details.
+================================================================================
+MIT License
 ================================================================================
 
-MIT License
-
-Copyright (c) 2024 Joshua & Jonathan Jewell
+Copyright (c) 2024 asdf-ghjk contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,3 +23,125 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+================================================================================
+Palimpsest License v0.8
+================================================================================
+
+Palimpsest Dual Licensing v0.8
+
+This work is available under BOTH the MIT License (above) AND the Palimpsest
+License v0.8 (below). Users may choose which license to follow.
+
+PREAMBLE
+
+The Palimpsest License acknowledges that software is built on layers of
+previous work - a palimpsest of ideas, implementations, and insights. This
+license honors that tradition while ensuring works can be freely used,
+modified, and built upon.
+
+TERMS
+
+1. GRANT OF RIGHTS
+
+   You are granted perpetual, worldwide, non-exclusive, royalty-free rights to:
+   - Use this work for any purpose
+   - Study and modify the work
+   - Distribute the work
+   - Distribute modified versions
+   - Use in commercial applications
+   - Sublicense under compatible terms
+
+2. ATTRIBUTION
+
+   When distributing or using this work:
+   - Preserve this license text
+   - Credit original authors where reasonable
+   - Note modifications made (encouraged but not required for small changes)
+
+3. COPYLEFT (WEAK)
+
+   If you distribute modified versions:
+   - You MAY license under any OSI-approved license
+   - You SHOULD consider using Palimpsest for derivative works
+   - Attribution to the original work is appreciated
+
+4. PALIMPSEST PHILOSOPHY
+
+   This license embodies the "palimpsest" philosophy:
+   - Software is layers of collaborative human effort
+   - Each layer builds on and honors previous layers
+   - Knowledge should flow freely across boundaries
+   - Political and corporate neutrality is paramount
+
+5. PATENT GRANT
+
+   Contributors grant a royalty-free patent license for any patents they own
+   that are necessarily infringed by their contributions to this work.
+
+6. NO WARRANTY
+
+   THIS WORK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+7. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+   DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THIS WORK.
+
+8. TERMINATION
+
+   Your rights under this license terminate automatically if you:
+   - Fail to comply with the terms
+   - File patent litigation against contributors
+   - Violate the attribution requirements
+
+   Upon termination, you must cease distribution and destroy copies (though
+   works you've already distributed remain under their license).
+
+9. COMPATIBILITY
+
+   This license is compatible with:
+   - MIT, BSD, Apache 2.0, MPL 2.0
+   - GPL v3 or later (one-way compatibility)
+   - Most OSI-approved open source licenses
+
+10. INTERPRETATION
+
+    - "Work" means the software, documentation, and associated materials
+    - "Modify" means any change, addition, or deletion
+    - "Distribute" means making available to others by any means
+    - "You" means the individual or entity exercising rights under this license
+
+11. GOVERNING LAW
+
+    This license is governed by international copyright law and treaties.
+    No specific jurisdiction is designated (political neutrality).
+
+12. ENTIRE AGREEMENT
+
+    This license constitutes the entire agreement regarding the work.
+
+SPDX-License-Identifier: Palimpsest-0.8
+
+For more information about the Palimpsest License, see:
+https://github.com/Hyperpolymath/palimpsest-license
+
+================================================================================
+USAGE NOTE
+================================================================================
+
+Users of this software may choose to follow EITHER:
+- The MIT License (above), OR
+- The Palimpsest License v0.8 (above)
+
+You are NOT required to follow both. Choose the license that best suits your
+needs. Both licenses permit commercial use, modification, and distribution.
+
+The Palimpsest License adds philosophical context about collaborative software
+development while maintaining permissive terms similar to MIT.
+
+SPDX-License-Identifier: MIT AND Palimpsest-0.8
+
+================================================================================
