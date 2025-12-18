@@ -3,7 +3,7 @@
 
 Contact: https://github.com/Hyperpolymath/asdf-ghjk/security/advisories/new
 Contact: https://github.com/Hyperpolymath/asdf-ghjk/issues
-Expires: 2025-12-31T23:59:59.000Z
+Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
 Canonical: https://github.com/Hyperpolymath/asdf-ghjk/.well-known/security.txt
 

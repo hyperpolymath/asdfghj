@@ -8,7 +8,7 @@
   (version "1.0.0")
   (name "asdfghj")
   (type "project")
-  (purpose "- [Dependencies](#dependencies)")
+  (purpose "Provide asdf version manager integration for ghjk development environment tool")
 
   (position-in-ecosystem
     "Part of the hyperpolymath ecosystem of tools, libraries, and specifications.
@@ -53,7 +53,8 @@
          ECOSYSTEM.scm = Project relationship format")))
 
   (what-this-is
-    "- [Dependencies](#dependencies)
+    "An asdf plugin that enables version management of ghjk (a development environment manager).
+     Allows users to install, switch, and manage multiple ghjk versions seamlessly via asdf.
 
      Design principles:
      - RSR Gold compliance target

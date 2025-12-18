@@ -20,7 +20,7 @@
      (title . "Initial Architecture and RSR Compliance")
      (status . "accepted")
      (date . "2025-12-15")
-     (context . "- [Dependencies](#dependencies)")
+     (context . "Need to establish a secure, compliant, and maintainable foundation for the asdf-ghjk plugin")
      (decision . "Establish foundational architecture following Rhodium Standard Repository guidelines with multi-platform CI/CD, SHA-pinned actions, and SPDX headers")
      (consequences . ("RSR Gold compliance target"
                       "SHA-pinned GitHub Actions for security"
@@ -96,33 +96,32 @@
       ReScript for type-safe frontends, Ada/SPARK for formally verified code.
       Each language is chosen for its strengths in its domain.")))
 
-;;; End of META.scm
-;; ============================================================================
-;; CROSS-PLATFORM STATUS (Added 2025-12-17)
-;; ============================================================================
-;; This repo exists on multiple platforms. GitHub is the primary/source of truth.
+;;;============================================================================
+;;; CROSS-PLATFORM STATUS (Added 2025-12-17)
+;;;============================================================================
+;;; This repo exists on multiple platforms. GitHub is the primary/source of truth.
 
-(cross-platform-status
-  (generated "2025-12-17")
-  (primary-platform "github")
-  (gitlab-mirror
-    (path "hyperpolymath/maaf/3-applications/asdfghj")
-    (url "https://gitlab.com/hyperpolymath/maaf/3-applications/asdfghj")
-    (last-gitlab-activity "2025-12-11")
-    (sync-status "gh-primary")
-    (notes "GitHub newer. Safe to sync GH→GL."))
-  
-  (reconciliation-instructions
-    ";; To fetch and compare GitLab content:"
-    ";; git remote add gitlab https://gitlab.com/hyperpolymath/maaf/3-applications/asdfghj.git"
-    ";; git fetch gitlab"
-    ";; git log gitlab/main --oneline"
-    ";; git diff main gitlab/main"
-    ";;"
-    ";; To merge if GitLab has unique content:"
-    ";; git merge gitlab/main --allow-unrelated-histories"
-    ";;"
-    ";; After reconciliation, GitHub mirrors to GitLab automatically.")
-  
-  (action-required "gh-primary"))
+(define cross-platform-status
+  '((generated . "2025-12-17")
+    (primary-platform . "github")
+    (gitlab-mirror
+     ((path . "hyperpolymath/maaf/3-applications/asdfghj")
+      (url . "https://gitlab.com/hyperpolymath/maaf/3-applications/asdfghj")
+      (last-gitlab-activity . "2025-12-11")
+      (sync-status . "gh-primary")
+      (notes . "GitHub newer. Safe to sync GH→GL.")))
+    (reconciliation-instructions
+     (";; To fetch and compare GitLab content:"
+      ";; git remote add gitlab https://gitlab.com/hyperpolymath/maaf/3-applications/asdfghj.git"
+      ";; git fetch gitlab"
+      ";; git log gitlab/main --oneline"
+      ";; git diff main gitlab/main"
+      ";;"
+      ";; To merge if GitLab has unique content:"
+      ";; git merge gitlab/main --allow-unrelated-histories"
+      ";;"
+      ";; After reconciliation, GitHub mirrors to GitLab automatically."))
+    (action-required . "gh-primary")))
+
+;;; End of META.scm
 

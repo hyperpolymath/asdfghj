@@ -6,8 +6,8 @@ Currently supported versions of asdf-ghjk:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
-| < 1.0   | :x:                |
+| 0.1.x   | :white_check_mark: |
+| < 0.1   | :x:                |
 
 ## Security Considerations
 
@@ -248,5 +248,5 @@ For security concerns:
 
 ---
 
-**Last Updated**: 2024-11-22
-**Next Review**: Before v1.0.0 release
+**Last Updated**: 2025-12-18
+**Next Review**: Before v0.2.0 release
