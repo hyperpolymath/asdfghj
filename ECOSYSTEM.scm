@@ -1,44 +1,30 @@
 ;; SPDX-License-Identifier: AGPL-3.0-or-later
-;; ECOSYSTEM.scm - asdf-ghjk ecosystem position
+;; ECOSYSTEM.scm - Project ecosystem positioning
 
 (ecosystem
-  (version . "1.0.0")
-  (name . "asdf-ghjk")
-  (type . "version-manager-plugin")
-  (purpose . "asdf plugin for ghjk - bridge between asdf and its successor")
+  (version "1.0.0")
+  (name "asdf-ghjk")
+  (type "asdf-plugin")
+  (purpose "Version management for ghjk development environment manager")
 
-  (position-in-ecosystem . "migration-bridge")
-
-  (what-this-is
-    "asdf plugin for installing ghjk (asdf successor)"
-    "Enables gradual migration from asdf to ghjk"
-    "Allows running both version managers in parallel"
-    "Provides ghjk CLI via asdf install mechanism")
-
-  (what-this-is-not
-    "Not a replacement for asdf - installs alongside it"
-    "Not ghjk itself - just the asdf plugin for ghjk"
-    "Not required for ghjk usage - alternative installation method")
+  (position-in-ecosystem
+    (category "developer-tools")
+    (subcategory "version-management")
+    (layer "user-facing"))
 
   (related-projects
-    ;; Direct ecosystem relationships
-    (("hyperpolymath/asdf-control-tower" . "coordination-hub")
-     ("hyperpolymath/asdf-plugin-configurator" . "configuration-tool")
-     ("hyperpolymath/asdf-metaiconic-plugin" . "metadata-registry")
-     ("hyperpolymath/asdf-ui-plugin" . "visual-interface"))
+    (sibling-standard
+      (name "asdf")
+      (relationship "plugin-host")
+      (url "https://asdf-vm.com"))
+    (sibling-standard
+      (name "ghjk")
+      (relationship "managed-tool")
+      (url "https://github.com/metatypedev/ghjk")))
 
-    ;; External dependencies
-    (("asdf-vm/asdf" . "parent-ecosystem")
-     ("metatypedev/ghjk" . "upstream-tool")
-     ("hyperpolymath/mustfile" . "build-tool")))
+  (what-this-is
+    "An asdf plugin for managing ghjk development environment manager versions")
 
-  (integration-points
-    (provides
-      "bin/list-all - lists available ghjk versions"
-      "bin/latest-stable - returns latest stable ghjk version"
-      "bin/download - downloads ghjk release"
-      "bin/install - installs ghjk to asdf prefix")
-
-    (consumes
-      "GitHub releases from metatypedev/ghjk"
-      "asdf plugin interface callbacks")))
+  (what-this-is-not
+    "Not a standalone version manager"
+    "Not a replacement for the tool itself"))
